@@ -1,0 +1,25 @@
+create table clientes
+(
+    id INTEGER not null
+        constraint clientes_pk
+            primary key autoincrement,
+	cpf TEXT not null,
+	nome TEXT not null,
+	telefone TEXT not null
+);
+
+create table enderecos
+(
+	id INTEGER not null
+		constraint enderecos_pk
+			primary key autoincrement,
+	cpfCliente TEXT not null
+		constraint enderecos_clientes_cpf_fk
+			references clientes (cpf)
+				on delete cascade,
+	rua TEXT not null,
+	numero TEXT not null,
+	bairro TEXT not null,
+	cidade TEXT not null,
+	complemento TEXT
+);

@@ -1,9 +1,0 @@
-create table clientes
-(
-	cpf TEXT not null
-		constraint clientes_pk
-			primary key,
-	nome TEXT not null,
-	telefone TEXT not null
-);
-
