@@ -1,4 +1,4 @@
-package db;
+package dados;
 
 import java.sql.*;
 
@@ -8,7 +8,7 @@ public class ConexaoDB {
 
     private ConexaoDB() throws Exception{
         Class.forName("org.sqlite.JDBC");
-        String url = "jdbc:sqlite:data.sqlite";
+        String url = "jdbc:sqlite:src/db/data.sqlite";
         this.conexao = DriverManager.getConnection(url);
     }
 
