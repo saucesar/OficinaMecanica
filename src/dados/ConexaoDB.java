@@ -6,13 +6,12 @@ public class ConexaoDB {
     private Connection conexao;
     private static ConexaoDB conexaoDB;
 
-    private ConexaoDB() throws Exception{
-        Class.forName("org.sqlite.JDBC");
+    private ConexaoDB() throws SQLException{
         String url = "jdbc:sqlite:src/db/data.sqlite";
         this.conexao = DriverManager.getConnection(url);
     }
 
-    public static ConexaoDB getInstance() throws Exception{
+    public static ConexaoDB getInstance() throws SQLException{
         if (conexaoDB == null){
             conexaoDB = new ConexaoDB();
         }
