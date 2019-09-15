@@ -24,7 +24,7 @@ public class Endereco {
 
     @Override
     public String toString(){
-        String str = "RUA "+this.rua+", NUMERO: "+this.numero+", "+this.bairro+", "+this.cidade+", "+this.complemento;
+        String str = "RUA "+this.rua+", NUMERO "+this.numero+", "+this.bairro+", "+this.cidade+", "+this.complemento;
         return str;
     }
 }
