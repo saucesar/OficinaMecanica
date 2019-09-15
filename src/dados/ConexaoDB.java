@@ -2,21 +2,21 @@ package dados;
 
 import java.sql.*;
 
-public class ConexaoDB {
+class ConexaoDB {
     private Connection conexao;
     private static ConexaoDB conexaoDB;
 
     private ConexaoDB() throws SQLException{
-        String url = "jdbc:sqlite:src/db/data.sqlite";
+        String url = "jdbc:sqlite:C:\\sqlite\\db/data.sqlite";
         this.conexao = DriverManager.getConnection(url);
     }
 
-    public static ConexaoDB getInstance() throws SQLException{
+    static ConexaoDB getInstance() throws SQLException{
         if (conexaoDB == null){
             conexaoDB = new ConexaoDB();
         }
         return conexaoDB;
     }
 
-    public Connection getConexao(){return this.conexao;}
+    Connection getConexao(){return this.conexao;}
 }
