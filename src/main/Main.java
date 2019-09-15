@@ -12,10 +12,10 @@ public class Main {
         RepositorioCliente rc = new RepositorioCliente();
         RepositorioEndereco re = new RepositorioEndereco();
         try{
-            rc.salvar(c);
-            re.salvar(c.getEndereco(),c.getCpf());
+            Cliente cliente = rc.buscar("11122233344");
+            rc.salvar(cliente);
         }catch (Exception ex){
-            System.out.println(ex.getMessage());
+            System.out.println(ex.getClass());
         }
     }
 }

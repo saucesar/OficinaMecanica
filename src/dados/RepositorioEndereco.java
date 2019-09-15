@@ -2,6 +2,7 @@ package dados;
 
 import negocio.entidades.Endereco;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class RepositorioEndereco extends RepositorioBasico{
@@ -18,5 +19,23 @@ public class RepositorioEndereco extends RepositorioBasico{
         ps.setString(5,endereco.getCidade());
         ps.setString(6,endereco.getComplemento());
         ps.executeUpdate();
+    }
+
+    public Endereco buscar(String cpfCliente) throws SQLException {
+        String sql = "SELECT * FROM enderecos WHERE cpfCliente = ?";
+
+        PreparedStatement ps = this.conexao.prepareStatement(sql);
+        ps.setString(1,cpfCliente);
+        ResultSet rs = ps.executeQuery();
+
+        rs.next();
+
+        String rua = rs.getString("rua");
+        String numero = rs.getString("numero");
+        String bairro = rs.getString("bairro");
+        String cidade = rs.getString("cidade");
+        String complemento = rs.getString("complemento");
+
+        return new Endereco(rua,numero,bairro,cidade,complemento);
     }
 }

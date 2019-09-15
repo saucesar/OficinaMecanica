@@ -8,6 +8,9 @@ create table clientes
 	telefone TEXT not null
 );
 
+create unique index clientes_cpf_uindex
+	on clientes (cpf);
+
 create table enderecos
 (
 	id INTEGER not null
