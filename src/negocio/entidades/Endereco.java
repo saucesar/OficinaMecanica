@@ -1,16 +1,31 @@
 package negocio.entidades;
 
 public class Endereco {
+    private int id;
     private String rua,numero,bairro,cidade,complemento,cpfCliente;
 
-    public Endereco(String rua, String numero, String bairro, String cidade, String complem){
+    public Endereco(String rua, String numero, String bairro, String cidade, String complem,String cpfCliente){
+        this.id = 0;
         this.rua = rua;
         this.numero = numero;
         this.bairro = bairro;
         this.cidade = cidade;
         this.complemento = complem;
+        this.cpfCliente = cpfCliente;
     }
 
+    public Endereco(int id, String rua, String numero, String bairro, String cidade, String complem,String cpfCliente){
+        this.id = id;
+        this.rua = rua;
+        this.numero = numero;
+        this.bairro = bairro;
+        this.cidade = cidade;
+        this.complemento = complem;
+        this.cpfCliente = cpfCliente;
+    }
+    public String getCpfCliente(){return this.cpfCliente;}
+    public void setCpfCliente(String cpf){this.cpfCliente = cpf;}
+    public int getId(){return this.id;}
     public String getRua(){return this.rua;}
     public void setRua(String rua){ this.rua = rua;}
     public String getNumero(){return this.numero;}

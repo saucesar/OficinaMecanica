@@ -8,11 +8,11 @@ import java.sql.SQLException;
 public class RepositorioEndereco extends RepositorioBasico{
     public RepositorioEndereco() throws Exception { super(); }
 
-    public void salvar(Endereco endereco, String cpfCliente) throws SQLException {
+    public void salvar(Endereco endereco) throws SQLException {
         String sql = "INSERT INTO enderecos (cpfCliente, rua, numero, bairro, cidade, complemento) VALUES (?,?,?,?,?,?)";
         PreparedStatement ps = this.conexao.prepareStatement(sql);
 
-        ps.setString(1,cpfCliente);
+        ps.setString(1,endereco.getCpfCliente());
         ps.setString(2,endereco.getRua());
         ps.setString(3,endereco.getNumero());
         ps.setString(4,endereco.getBairro());
@@ -29,13 +29,28 @@ public class RepositorioEndereco extends RepositorioBasico{
         ResultSet rs = ps.executeQuery();
 
         rs.next();
-
+        int id = rs.getInt("id");
         String rua = rs.getString("rua");
         String numero = rs.getString("numero");
         String bairro = rs.getString("bairro");
         String cidade = rs.getString("cidade");
         String complemento = rs.getString("complemento");
 
-        return new Endereco(rua,numero,bairro,cidade,complemento);
+        return new Endereco(id,rua,numero,bairro,cidade,complemento,cpfCliente);
+    }
+
+    public void atualizar(Endereco endereco) throws SQLException {
+        String sql = "UPDATE enderecos SET cpfCliente = ?, rua = ?, numero = ?, bairro = ?, cidade = ?, complemento = ? WHERE id = ?";
+        PreparedStatement ps = this.conexao.prepareStatement(sql);
+
+        ps.setString(1,endereco.getCpfCliente());
+        ps.setString(2,endereco.getRua());
+        ps.setString(3,endereco.getNumero());
+        ps.setString(4,endereco.getBairro());
+        ps.setString(5,endereco.getCidade());
+        ps.setString(6,endereco.getComplemento());
+        ps.setInt(7,endereco.getId());
+
+        ps.executeUpdate();
     }
 }

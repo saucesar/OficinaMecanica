@@ -3,25 +3,29 @@ package negocio.entidades;
 import java.lang.annotation.Inherited;
 
 public class Cliente {
+    private int id;
     private String cpf, nome,telefone;
     private Endereco endereco;
 
     public Cliente(String cpf,String nome, String telefone,Endereco e){
-        this.cpf = formatarCpf(cpf);
+        this.id = 0;
+        this.cpf = cpf;
         this.nome = nome;
         this.telefone = telefone;
         this.endereco = e;
     }
 
-    public Cliente(String cpf,String nome, String telefone){
-        this.cpf = formatarCpf(cpf);
+    public Cliente(int id,String cpf,String nome, String telefone){
+        this.id = id;
+        this.cpf = cpf;
         this.nome = nome;
         this.telefone = telefone;
         this.endereco = null;
     }
 
+    public int getId(){return this.id;}
     public String getCpf(){return this.cpf;}
-    public void setCpf(String cpf){this.cpf = formatarCpf(cpf);}
+    public void setCpf(String cpf){this.cpf = cpf;}
     public String getNome(){return this.nome;}
     public void setNome(String nome){this.nome = nome;}
     public String getTelefone(){return this.telefone;}
@@ -35,7 +39,7 @@ public class Cliente {
 
     @Override
     public String toString(){
-        String str = this.cpf+" | "+this.nome+" | "+this.telefone+" | ";
+        String str = formatarCpf(this.cpf)+" | "+this.nome+" | "+this.telefone+" | ";
         if(this.endereco != null){str += this.endereco.toString();}
         return str;
     }

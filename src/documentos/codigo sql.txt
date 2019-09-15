@@ -19,7 +19,7 @@ create table enderecos
 	cpfCliente TEXT not null
 		constraint enderecos_clientes_cpf_fk
 			references clientes (cpf)
-				on delete cascade,
+				on update cascade on delete cascade,
 	rua TEXT not null,
 	numero TEXT not null,
 	bairro TEXT not null,
