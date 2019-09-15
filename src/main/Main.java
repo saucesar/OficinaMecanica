@@ -1,30 +1,48 @@
 package main;
 
-import dados.RepositorioCliente;
-import dados.RepositorioEndereco;
-import negocio.entidades.Cliente;
-import negocio.entidades.Endereco;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.stage.Stage;
 
-public class Main {
-    public static void main(String args[]) throws Exception {
-        String cpf = "11111111111";
-        Endereco e = new Endereco("STREET MODIF","01","CENTRO","GARANHUNS","SEM COMPLEMENTO",cpf);
-        Cliente c = new Cliente(cpf,"TESTE NOME mod2","(87)988996655",e);
-        RepositorioCliente rc = new RepositorioCliente();
-        RepositorioEndereco re = new RepositorioEndereco();
-        try{
-            Cliente c2 = rc.buscarPorCpf(cpf);
-            c2.setNome(c.getNome());
+import java.util.Objects;
 
-            Endereco e2 = re.buscar(c2.getCpf());
-            c2.setCpf("11122233344");
+public class Main extends Application {
+    private static Parent root;
+    private static Stage palco;
 
-            e2.setRua("MODIFICADO de novo");
-            e2.setCpfCliente(c2.getCpf());
-            rc.atualizar(c2);
-            re.atualizar(e2);
-        }catch (Exception ex){
-            System.out.println(ex.getMessage());
+    public static void main(String args[]) {
+        try {
+            launch(args);
+        }catch (Exception e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+
+            alert.setTitle("ERRO!!!");
+            alert.setHeaderText(null);
+            alert.setContentText(e.getMessage());
+
+            e.printStackTrace();
+            alert.showAndWait();
+        }
+    }
+
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        palco = primaryStage;
+        root = FXMLLoader.load(Objects.requireNonNull(this.getClass().getClassLoader().getResource("gui/telaCadastroCliente.fxml")));
+        palco.setScene(new Scene(root));
+        palco.show();
+    }
+
+    public static void setJanela(Parent janela) {
+        try {
+            root = janela;
+            palco.setScene(new Scene(root));
+            palco.show();
+        }catch (Exception e){
+            System.out.println(e.getMessage());
         }
     }
 }

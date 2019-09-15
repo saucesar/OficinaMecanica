@@ -1,6 +1,6 @@
 package negocio.entidades;
 
-public class Endereco {
+public class Endereco extends ClasseBasica{
     private int id;
     private String rua,numero,bairro,cidade,complemento,cpfCliente;
 
@@ -23,6 +23,7 @@ public class Endereco {
         this.complemento = complem;
         this.cpfCliente = cpfCliente;
     }
+
     public String getCpfCliente(){return this.cpfCliente;}
     public void setCpfCliente(String cpf){this.cpfCliente = cpf;}
     public int getId(){return this.id;}
@@ -37,9 +38,14 @@ public class Endereco {
     public String getComplemento(){return this.complemento;}
     public void setComplemento(String complem){ this.complemento = complem;}
 
+    public boolean dadosValidos(){ return (ruaValida() && bairroValido() && cidadeValida());}
+
     @Override
     public String toString(){
-        String str = "RUA "+this.rua+", NUMERO "+this.numero+", "+this.bairro+", "+this.cidade+", "+this.complemento;
-        return str;
+        return (this.rua+", "+this.numero+", "+this.bairro+", "+this.cidade+", "+this.complemento);
     }
+
+    private boolean ruaValida(){ return (this.rua.length() > 5); }
+    private boolean bairroValido(){ return (this.bairro.length() > 5); }
+    private boolean cidadeValida(){ return (this.cidade.length() > 5); }
 }

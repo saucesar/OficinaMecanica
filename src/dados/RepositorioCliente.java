@@ -65,4 +65,11 @@ public class RepositorioCliente extends RepositorioBasico {
         ps.setInt(4,cliente.getId());
         ps.executeUpdate();
     }
+
+    public void deletar(String cpf) throws SQLException {
+        String sql = "DELETE FROM clientes WHERE cpf = ?";
+        PreparedStatement ps = this.conexao.prepareStatement(sql);
+        ps.setString(1,cpf);
+        ps.executeUpdate();
+    }
 }

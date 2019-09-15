@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class RepositorioEndereco extends RepositorioBasico{
-    public RepositorioEndereco() throws Exception { super(); }
+    public RepositorioEndereco() throws SQLException { super(); }
 
     public void salvar(Endereco endereco) throws SQLException {
         String sql = "INSERT INTO enderecos (cpfCliente, rua, numero, bairro, cidade, complemento) VALUES (?,?,?,?,?,?)";
@@ -51,6 +51,13 @@ public class RepositorioEndereco extends RepositorioBasico{
         ps.setString(6,endereco.getComplemento());
         ps.setInt(7,endereco.getId());
 
+        ps.executeUpdate();
+    }
+
+    public void deletar(String cpfCliente) throws SQLException {
+        String sql = "DELETE FROM enderecos WHERE cpfCliente = ?";
+        PreparedStatement ps = this.conexao.prepareStatement(sql);
+        ps.setString(1,cpfCliente);
         ps.executeUpdate();
     }
 }
