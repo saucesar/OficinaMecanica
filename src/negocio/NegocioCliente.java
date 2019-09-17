@@ -5,6 +5,7 @@ import dados.RepositorioEndereco;
 import negocio.entidades.Cliente;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class NegocioCliente {
     private RepositorioCliente clientes;
@@ -21,4 +22,13 @@ public class NegocioCliente {
             enderecos.salvar(cliente.getEndereco());
         }
     }
+
+    public void deletar(String cpf) throws SQLException {this.clientes.deletar(cpf);}
+    public ArrayList<Cliente> getAll() throws SQLException{
+        ArrayList<Cliente> clientes = this.clientes.getAll();
+        for(Cliente c:clientes){ c.setEndereco(this.enderecos.buscar(c.getCpf())); }
+        return clientes;
+    }
+
+    public Cliente buscarCliente(String cpf) throws SQLException { return clientes.buscarPorCpf(cpf); }
 }

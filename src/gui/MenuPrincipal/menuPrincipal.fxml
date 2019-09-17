@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.web.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.canvas.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="anchorMenu" prefHeight="515.0" prefWidth="757.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.MenuPrincipal.ControllerMenuPrincipal">
+   <children>
+      <TabPane layoutX="14.0" layoutY="14.0" prefHeight="487.0" prefWidth="737.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab fx:id="abaClientes" onSelectionChanged="#clikAbaClientes" text="Clientes">
+            <content>
+                  <ScrollPane prefHeight="359.0" prefViewportHeight="359.0" prefViewportWidth="683.0" prefWidth="721.0">
+                     <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="456.0" prefWidth="734.0">
+                           <children>
+                              <TableView fx:id="tabelaClientes" layoutX="6.0" layoutY="64.0" prefHeight="392.0" prefWidth="633.0">
+                                <columns>
+                                  <TableColumn fx:id="colunaCpf" prefWidth="81.0" text="CPF" />
+                                  <TableColumn fx:id="colunaNome" prefWidth="169.0" text="Nome" />
+                                    <TableColumn fx:id="colunaTelefone" prefWidth="123.0" text="Telefone" />
+                                    <TableColumn fx:id="colunaEndereco" prefWidth="401.0" text="Endereço" />
+                                </columns>
+                              </TableView>
+                              <Button fx:id="botaoEditar" layoutX="646.0" layoutY="183.0" mnemonicParsing="false" onAction="#clikEditar" prefHeight="23.0" prefWidth="69.0" text="Editar">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="botaoExcluir" layoutX="646.0" layoutY="228.0" mnemonicParsing="false" onAction="#clikExcluir" prefHeight="23.0" prefWidth="69.0" text="Excluir">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="botaoEncerrar" layoutX="642.0" layoutY="412.0" mnemonicParsing="false" onAction="#fecharJanela" prefHeight="30.0" prefWidth="77.0" text="Encerrar">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="botaoNovo" layoutX="646.0" layoutY="143.0" mnemonicParsing="false" onAction="#clikNovo" prefHeight="23.0" prefWidth="69.0" text="Novo">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                              <TextField layoutX="14.0" layoutY="14.0" prefHeight="36.0" prefWidth="473.0" promptText="buscar por ..." />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </ScrollPane>
+            </content>
+          </Tab>
+          <Tab text="Produtos">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+   <effect>
+      <Blend />
+   </effect>
+</AnchorPane>

@@ -4,6 +4,7 @@ import negocio.entidades.Cliente;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class RepositorioCliente extends RepositorioBasico {
 
@@ -71,5 +72,22 @@ public class RepositorioCliente extends RepositorioBasico {
         PreparedStatement ps = this.conexao.prepareStatement(sql);
         ps.setString(1,cpf);
         ps.executeUpdate();
+    }
+
+    public ArrayList<Cliente> getAll() throws SQLException {
+        ArrayList<Cliente> clientes = new ArrayList<Cliente>();
+        String sql = "SELECT * FROM clientes";
+
+        PreparedStatement ps = this.conexao.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+
+        while(rs.next()){
+            int id = rs.getInt("id");
+            String cpf = rs.getString("cpf");
+            String nome = rs.getString("nome");
+            String telefone = rs.getString("telefone");
+            clientes.add(new Cliente(id,cpf,nome,telefone));
+        }
+        return clientes;
     }
 }
